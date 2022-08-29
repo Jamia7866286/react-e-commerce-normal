@@ -1,0 +1,151 @@
+@import 'bootstrap';
+
+
+
+.parent-section{
+  padding: 30px 0;
+}
+
+.navbar-top{
+  display: flex;
+  gap:2rem;
+  list-style-type: none;
+  margin-bottom: 2rem;
+  padding-left: 0;
+
+  a{
+    text-decoration: none;
+    color: #000;
+
+   
+  }
+}
+
+.product-list-main{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:1rem;
+
+  .card-box{
+    margin-bottom: 2rem;
+    border: 0.8px solid #ddd;
+    border-radius: 4px;
+    padding:1rem;
+
+    span{
+      margin-left: 6px;
+    }
+    img{
+      height: 100px;
+      width:100px;
+      object-fit:cover
+    }
+  }
+}
+
+
+.chip{
+    display: inline-block;
+    padding: 3px;
+    background: green;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+
+.cart-main-box{
+  display: grid;
+  grid-template-columns: 3fr 1.2fr;
+  gap:3rem;
+  align-items: flex-start;
+}
+
+.cart-list-main{
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.quantity-box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  .item-count{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  
+    .decriment-box{
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+    }
+  
+    > span{
+      margin-left : 0 !important;
+      font-weight: 500;
+    }
+  }
+}
+
+
+
+.buy-main{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  text-transform: uppercase;
+
+  .item-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.6rem;
+
+    &:not(:last-child){
+      border-bottom: 0.5px solid #ddd;
+    }
+  }
+}
+
+.continue-shop{
+  text-align: center;
+  padding-top: 0.5rem;
+  a{
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+
+.search-box{
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr 0.4fr;
+  align-items: center;
+  justify-content: space-between;
+  gap:1rem;
+}
+
+.delete-cartitem{
+  padding: 2px;
+  cursor: pointer;
+}
+
+
+.cart-no-data{
+
+  p{
+    margin: 0;
+  }
+  
+  .continue-shop{
+    text-align: left;
+    padding: 0;
+  }
+}
