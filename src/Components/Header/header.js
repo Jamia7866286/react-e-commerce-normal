@@ -12,8 +12,6 @@ const HeaderComponent = () => {
   const activeNavItem = (itemLink) => {
     let path = location.pathname;
 
-    console.log("path", path);
-
     if (itemLink === path) {
       return "active";
     } else {
