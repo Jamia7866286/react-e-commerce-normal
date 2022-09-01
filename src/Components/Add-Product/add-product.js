@@ -17,6 +17,7 @@ const AddProduct = () => {
     img: yup.string().url().required("Please fill this field!"),
     quantity: yup.string().required("Please fill this field!"),
     type: yup.string().required("Please fill this field!"),
+    // file: yup.string().required("Please fill this field!"),
   });
 
   const initialValue = {
@@ -28,19 +29,21 @@ const AddProduct = () => {
     id: Math.floor(Math.random() * 10000),
     product_cart_count: 1,
     type: "",
+    // file: "",
   };
 
-  const { handleChange, handleSubmit, values, errors, touched } = useFormik({
-    initialValues: initialValue,
-    validationSchema: ValidationSchema,
-    onSubmit: (values) => {
-      alert("Your product added successfully!");
-      setAddProductAtom((prev) => {
-        return [values, ...prev];
-      });
-      navigate("/");
-    },
-  });
+  const { handleChange, handleSubmit, values, errors, touched, setFieldValue } =
+    useFormik({
+      initialValues: initialValue,
+      validationSchema: ValidationSchema,
+      onSubmit: (values) => {
+        alert("Your product added successfully!");
+        setAddProductAtom((prev) => {
+          return [values, ...prev];
+        });
+        navigate("/");
+      },
+    });
 
   return (
     <>
@@ -172,15 +175,16 @@ const AddProduct = () => {
             )}
           </div>
 
-          {/* <div className="mb-3 form-check">
+          {/* <div className="mb-3">
+            <label className="form-label">Upload PDF</label>
             <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
+              type="file"
+              className="form-control"
+              name="file"
+              onChange={(e) => {
+                setFieldValue("file", e);
+              }}
             />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
-            </label>
           </div> */}
           <button type="submit" className="btn btn-primary">
             Submit

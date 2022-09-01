@@ -7,12 +7,8 @@ import {
   SelectFilterProduct,
   SortPrice,
 } from "../../assets/atoms/main.recoil";
-import { ecommerce } from "../../firebase-config";
-import HeaderComponent from "../../header";
+import HeaderComponent from "../Header/header";
 import ProductCard from "./product-card";
-import data from "../../assets/data/product_data.json";
-
-import { set, ref } from "firebase/database";
 
 const ProductList = () => {
   // Recoil state

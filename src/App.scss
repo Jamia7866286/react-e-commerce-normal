@@ -19,6 +19,15 @@
 
    
   }
+
+  .active{
+    a{
+      color:green;
+      border-bottom: 1px solid green;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+  }
 }
 
 .product-list-main{

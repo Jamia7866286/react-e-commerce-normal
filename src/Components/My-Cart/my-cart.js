@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { AddToCart, TotalPrice } from "../../assets/atoms/main.recoil";
 import { CourencyConvertor } from "../../const/courency-convertor";
-import HeaderComponent from "../../header";
+import HeaderComponent from "../Header/header";
 import AmountDetailsCard from "../Amount-Details-Card/amount-details-card";
 import MyAddress from "../My-Address/my-address";
 import MyCartCard from "./my-cart-card";
