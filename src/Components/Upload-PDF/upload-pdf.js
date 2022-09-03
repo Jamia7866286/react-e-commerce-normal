@@ -4,7 +4,8 @@ import HeaderComponent from "../Header/header";
 import { Document, Page, pdfjs } from "react-pdf";
 
 //PDFjs worker from an external cdn
-const url = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+const url =
+  "https://tyke-pitch-bucket.s3.ap-south-1.amazonaws.com/0041be86-c050-4e29-8e2d-4ea5a3b0140d.pdf";
 
 const UploadPDF = () => {
   const [selectedFile, setSelectedFile] = useState("");
@@ -32,19 +33,24 @@ const UploadPDF = () => {
           file={url}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={(error) => console.log("PDF load issue: ", error)}
+          onLoadProgress={() => {
+            console.log("PRGREOSS");
+          }}
         >
           {Array.from({ length: numPages }, (_, index) => {
-            console.log("page", numPages, index);
             return (
               <Page
                 key={`page_${index + 1}`}
                 pageNumber={index + 1}
                 renderAnnotationLayer={false}
                 renderTextLayer={false}
+                width={800}
               />
             );
           })}
         </Document>
+
+        {/* <p>Page of {numPages}</p> */}
       </div>
 
       <div className="mt-5 mb-2">
