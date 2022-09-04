@@ -4,16 +4,26 @@ import HeaderComponent from "../Header/header";
 import { Document, Page, pdfjs } from "react-pdf";
 
 //PDFjs worker from an external cdn
-const url =
-  "https://tyke-pitch-bucket.s3.ap-south-1.amazonaws.com/0041be86-c050-4e29-8e2d-4ea5a3b0140d.pdf";
+// const url =
+//   "https://tyke-pitch-bucket.s3.ap-south-1.amazonaws.com/0041be86-c050-4e29-8e2d-4ea5a3b0140d.pdf";
+
+const url = "http://localhost:3000/Adnan resume.pdf";
 
 const UploadPDF = () => {
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState(url);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
-  const FileMethod = (e) => {
-    console.log(e.target.files[0]);
-    setSelectedFile(e.target.files[0]);
+  const onFileChange = (e) => {
+    let fileReader = new FileReader();
+
+    fileReader.onload = function (fileLoadedEvent) {
+      selectedFile = fileLoadedEvent.target.result;
+      console.log(selectedFile);
+    };
+    // Convert data to base64
+    fileReader.readAsDataURL(e.target.files[0]);
+
+    setSelectedFile(fileReader);
     setIsFilePicked(true);
   };
 
@@ -28,31 +38,6 @@ const UploadPDF = () => {
     <>
       <HeaderComponent />
 
-      <div>
-        <Document
-          file={url}
-          onLoadSuccess={onDocumentLoadSuccess}
-          onLoadError={(error) => console.log("PDF load issue: ", error)}
-          onLoadProgress={() => {
-            console.log("PRGREOSS");
-          }}
-        >
-          {Array.from({ length: numPages }, (_, index) => {
-            return (
-              <Page
-                key={`page_${index + 1}`}
-                pageNumber={index + 1}
-                renderAnnotationLayer={false}
-                renderTextLayer={false}
-                width={800}
-              />
-            );
-          })}
-        </Document>
-
-        {/* <p>Page of {numPages}</p> */}
-      </div>
-
       <div className="mt-5 mb-2">
         <label className="form-label">Upload PDF</label>
         <input
@@ -61,12 +46,31 @@ const UploadPDF = () => {
           className="form-control"
           name="file"
           onChange={(e) => {
-            FileMethod(e);
+            onFileChange(e);
           }}
         />
       </div>
 
-      {isFilePicked ? (
+      <Document
+        file={selectedFile}
+        onLoadSuccess={onDocumentLoadSuccess}
+        onLoadError={(error) => alert(`PDF load issue: ${error}`)}
+        onLoadProgress={() => {}}
+      >
+        {Array.from({ length: numPages }, (_, index) => {
+          return (
+            <Page
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+              width={800}
+            />
+          );
+        })}
+      </Document>
+
+      {/* {isFilePicked ? (
         <div>
           <p>name: {selectedFile.name}</p>
           <p>type: {selectedFile.type}</p>
@@ -77,7 +81,7 @@ const UploadPDF = () => {
         </div>
       ) : (
         "No file selected"
-      )}
+      )} */}
 
       {/* <button
         className="btn btn-primary"
